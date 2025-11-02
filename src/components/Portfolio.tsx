@@ -1,62 +1,11 @@
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-
-interface Project {
-  id: number;
-  title: string;
-  category: string;
-  image: string;
-  description: string;
-}
+import { useSiteContent, PortfolioItem } from "@/hooks/useSiteContent";
 
 const Portfolio = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Golden Hour",
-      category: "Photography",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      description: "A serene collection capturing the magic of golden hour light across breathtaking landscapes."
-    },
-    {
-      id: 2,
-      title: "Urban Stories",
-      category: "Photography",
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop",
-      description: "Exploring the vibrant life and architecture of modern cities through candid moments."
-    },
-    {
-      id: 3,
-      title: "Cinematic Moments",
-      category: "Video",
-      image: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=600&fit=crop",
-      description: "A short film exploring human connections in the digital age."
-    },
-    {
-      id: 4,
-      title: "Portrait Series",
-      category: "Photography",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop",
-      description: "Intimate portraits that reveal the essence and emotion of each subject."
-    },
-    {
-      id: 5,
-      title: "Nature's Canvas",
-      category: "Photography",
-      image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop",
-      description: "Capturing the raw beauty and power of natural landscapes."
-    },
-    {
-      id: 6,
-      title: "Motion & Light",
-      category: "Video",
-      image: "https://images.unsplash.com/photo-1501436513145-30f24e19fcc8?w=800&h=600&fit=crop",
-      description: "An experimental video piece exploring abstract movement and light patterns."
-    }
-  ];
+  const { content } = useSiteContent();
+  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
 
   return (
     <section id="portfolio" className="py-24 bg-background">
@@ -67,7 +16,7 @@ const Portfolio = () => {
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+            {content.portfolio.map((project, index) => (
               <div
                 key={project.id}
                 className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elegant transition-all duration-500 cursor-pointer animate-fade-in"
@@ -76,7 +25,7 @@ const Portfolio = () => {
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={project.image}
+                    src={project.imageUrl}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
@@ -107,7 +56,7 @@ const Portfolio = () => {
             <div className="space-y-4">
               <div className="relative rounded-xl overflow-hidden">
                 <img
-                  src={selectedProject.image}
+                  src={selectedProject.imageUrl}
                   alt={selectedProject.title}
                   className="w-full h-auto"
                 />

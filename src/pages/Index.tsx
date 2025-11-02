@@ -5,6 +5,7 @@ import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import AdminButton from "@/components/AdminButton";
+import AdminPanel from "@/components/AdminPanel";
 
 const Index = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -18,6 +19,15 @@ const Index = () => {
     setIsAdmin(true);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("isAdmin");
+    setIsAdmin(false);
+  };
+
+  if (isAdmin) {
+    return <AdminPanel onLogout={handleLogout} />;
+  }
+
   return (
     <div className="min-h-screen">
       <Hero />
@@ -25,7 +35,7 @@ const Index = () => {
       <Portfolio />
       <Contact />
       <Footer />
-      {!isAdmin && <AdminButton onLogin={handleLogin} />}
+      <AdminButton onLogin={handleLogin} />
     </div>
   );
 };

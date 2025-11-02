@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LogIn } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -41,6 +41,9 @@ const AdminButton = ({ onLogin }: AdminButtonProps) => {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Admin Login</DialogTitle>
+            <DialogDescription>
+              Enter your admin credentials to manage the website
+            </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>

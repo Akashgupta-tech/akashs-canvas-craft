@@ -1,20 +1,23 @@
 import { Instagram, Youtube, Twitter } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const About = () => {
+  const { content } = useSiteContent();
+  
   return (
     <section id="about" className="py-24 bg-gradient-to-b from-muted/30 to-background">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-display font-bold text-center mb-16 animate-fade-in-up">
-            About Me
+            {content.about.title}
           </h2>
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
               <div className="aspect-square rounded-2xl overflow-hidden shadow-elegant">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop"
-                  alt="Akash Gupta"
+                  src={content.about.profileImage}
+                  alt={content.hero.name}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -22,19 +25,8 @@ const About = () => {
             </div>
             
             <div className="space-y-6 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                My creative journey began with a simple camera and an insatiable curiosity to capture the world around me. 
-                Over the years, I've developed a deep passion for storytelling through visual media.
-              </p>
-              
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Every frame tells a story, every moment holds emotion. Through my lens, I strive to freeze time and 
-                preserve memories that resonate with authenticity and beauty.
-              </p>
-              
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Whether it's capturing the golden hour light, documenting intimate moments, or creating cinematic narratives, 
-                I pour my heart into every project.
+              <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                {content.about.description}
               </p>
               
               <div className="flex gap-6 pt-6">

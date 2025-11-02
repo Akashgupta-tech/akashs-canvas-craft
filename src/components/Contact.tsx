@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const Contact = () => {
+  const { content } = useSiteContent();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,8 +52,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium">Email</p>
-                    <a href="mailto:akash@example.com" className="text-muted-foreground hover:text-primary transition-colors">
-                      akash@example.com
+                    <a href={`mailto:${content.contact.email}`} className="text-muted-foreground hover:text-primary transition-colors">
+                      {content.contact.email}
                     </a>
                   </div>
                 </div>
@@ -62,8 +64,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium">Phone</p>
-                    <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                      +1 (234) 567-890
+                    <a href={`tel:${content.contact.phone.replace(/\s/g, '')}`} className="text-muted-foreground hover:text-primary transition-colors">
+                      {content.contact.phone}
                     </a>
                   </div>
                 </div>
@@ -74,7 +76,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">Available for remote work worldwide</p>
+                    <p className="text-muted-foreground">{content.contact.location}</p>
                   </div>
                 </div>
               </div>

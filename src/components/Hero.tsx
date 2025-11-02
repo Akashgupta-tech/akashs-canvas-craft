@@ -1,6 +1,9 @@
 import { ArrowDown } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const Hero = () => {
+  const { content } = useSiteContent();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -17,15 +20,15 @@ const Hero = () => {
               Creative Portfolio
             </p>
             <h1 className="text-6xl md:text-8xl font-display font-bold text-gradient leading-tight">
-              Akash Gupta
+              {content.hero.name}
             </h1>
             <p className="text-2xl md:text-3xl text-muted-foreground font-light italic">
-              Capturing stories in light and motion
+              {content.hero.tagline}
             </p>
           </div>
           
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            Hi, I'm Akash Gupta, a creative artist who loves capturing emotions through photography and film.
+            {content.hero.description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
